@@ -34,6 +34,7 @@
 #include <deal.II/fe/fe_q.h>
 #include <deal.II/fe/fe_q_dg0.h>
 #include <deal.II/fe/fe_raviart_thomas.h>
+#include <deal.II/fe/fe_raviart_thomas_new.h>
 #include <deal.II/fe/fe_simplex_p.h>
 #include <deal.II/fe/fe_simplex_p_bubbles.h>
 #include <deal.II/fe/fe_tools.h>
@@ -587,6 +588,24 @@ namespace internal
         }
 
       const auto quad = quad_in.get_tensor_basis()[0];
+
+      /// FE_RaviartThomasNodal fills this shape info
+      const auto *fe_raviart_thomas_nodal =
+        dynamic_cast<const FE_RaviartThomasNodal_new<dim> *>(&fe_in);
+      if (fe_raviart_thomas_nodal)
+        {
+          fe_raviart_thomas_nodal->fill_shape_info(*this, quad);
+          return;
+        }
+
+      /// FE_RaviartThomasNew fills this shape info
+      const auto *fe_raviart_thomas_new =
+        dynamic_cast<const FE_RaviartThomas_new<dim> *>(&fe_in);
+      if (fe_raviart_thomas_new)
+        {
+          fe_raviart_thomas_new->fill_shape_info(*this, quad);
+          return;
+        }
 
       const FiniteElement<dim> &fe = fe_in.base_element(base_element_number);
       n_dimensions                 = dim;

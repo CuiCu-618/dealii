@@ -80,6 +80,7 @@ SET(_unity_include_src
   polynomials_pyramid.cc
   polynomials_rannacher_turek.cc
   polynomials_raviart_thomas.cc
+  polynomials_raviart_thomas_new.cc
   polynomials_rt_bubbles.cc
   polynomials_wedge.cc
   process_grid.cc

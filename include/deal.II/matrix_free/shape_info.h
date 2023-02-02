@@ -109,7 +109,13 @@ namespace internal
       /**
        * Shape functions without a tensor product properties.
        */
-      tensor_none = 7
+      tensor_none = 7,
+
+      /**
+       * Anisotropic vector-valued shape functions in the Raviart-Thomas
+       * fashion. TODO
+       */
+      raviart_thomas = 8
 
 
     };
